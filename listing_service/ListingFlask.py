@@ -66,7 +66,7 @@ def getListing():
         # conditional for 400 error
         if colLength == 0:
             return {"Success": False,
-                    "Error": "400"}
+                    "Error": "Found no open status listings."}
         return {"Success": True, "data": list_results}
 
 @app.route('/getListingbyID', methods=['GET'])
@@ -77,7 +77,7 @@ def getListingbyID():
         colLength = ListingCollection.count_documents({})
         if colLength == 0:
             return {"Success": False,
-                    "Error": "400"}
+                    "Error": "No ID found"}
         else:
             return {"Success": True,
                     "data": list_results}
