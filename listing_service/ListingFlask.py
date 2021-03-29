@@ -1,6 +1,5 @@
 import pymongo
 from pymongo import MongoClient
-import flask
 from flask import request
 from Listing import Listing
 

@@ -6,7 +6,7 @@ class Listing:
     def __init__(self, Type, TerminatingPrice, ProductName, SellerID, StartingPrice, Expiration, Status):
         self.Type = Type
         self.TerminatingPrice = TerminatingPrice
-        self.Transaction = None
+        self.Bids = []
         self.Product = None
         self.ProductName = ProductName
         self.Seller = None
