@@ -4,13 +4,13 @@
 
 * Manages auction any buy now listings
 
-### Example Function Name 
-Returns the sum of two parameters
+### GetNumberProducts
+Returns the number of products you want 
 
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+| **int** num | http://127.0.0.1:5000/GetNumberProducts?num=3 |
 
 #### Response 
 
@@ -25,6 +25,51 @@ Returns the sum of two parameters
         }            
 }      
 ```
+
+### getOpenListing
+Returns all open status listing 
+
+#### Request
+| Parameters| URL |
+|-----------|--------|
+| No Parameters | http://127.0.0.1:5000/getOpenListing |
+
+#### Response 
+
+```yaml
+{
+  "valid: True,
+  "data":       
+        {             
+         "testi": 1,  
+         "testj": 2,  
+         "sum": 3     
+        }            
+}      
+```
+
+### getListingbyID
+Returns all open status listing 
+
+#### Request
+| Parameters| URL |
+|-----------|--------|
+| **int** reqID | http://127.0.0.1:5000/getListingbyID?reqId=218278 |
+
+#### Response 
+
+```yaml
+{
+  "valid: True,
+  "data":       
+        {             
+         "testi": 1,  
+         "testj": 2,  
+         "sum": 3     
+        }            
+}      
+```
+
 
  
 ## Bid Service API
