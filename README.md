@@ -218,19 +218,13 @@ Returns the sum of two parameters
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+| **str** email, **int** lid | http://127.0.0.1:5000/listings/bids/notify?uid=email&lid=8067628 |
 
 #### Response 
 
 ```yaml
 {
-  "valid: True,
-  "data":       
-        {             
-         "testi": 1,  
-         "testj": 2,  
-         "sum": 3     
-        }            
+  "success": True        
 }      
 ```
 
