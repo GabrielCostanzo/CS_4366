@@ -77,7 +77,7 @@ def getListingbyID():
         colLength = ListingCollection.count_documents({})
         if colLength == 0:
             return {"Success": False,
-                    "Error": "No ID found"}
+                    "Error": "No ID found"} # error message
         else:
             return {"Success": True,
                     "data": list_results}
