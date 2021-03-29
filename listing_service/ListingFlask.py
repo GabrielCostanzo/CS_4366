@@ -3,14 +3,13 @@ from pymongo import MongoClient
 import flask
 import request
 from flask import request
-from listing_service import Listing
-
-# Listing
+from Listing import Listing
 
 client = pymongo.MongoClient("mongodb+srv://nicolas:capstone1@cluster0.vfv8c.mongodb.net/capstone?retryWrites=true&w=majority")
 db = client["capstone"]
-ListingCollection = db["Listing"]
-ProductCollection = db["Product"]
+ListingCollection = db["collection"]
+ProductCollection = db["ProductCollection"]
+db.ProductCollection.create_index([('DrinkName', pymongo.ASCENDING)], unique=True)
 
 product1 = {"_id": 1,
             "DrinkName": "Black Bowmore 1964",
@@ -47,16 +46,16 @@ product4 = {"_id": 4,
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-@app.route('/GetNumberProducts', methods=['GET'])
+@app.route('/getNumberOfListings', methods=['GET'])
 def findDrink():
     num = int(request.args['num'])
-    results = ProductCollection.find()
+    results = ListingCollection.find()
     list_results = list(results)
-    colLength = ProductCollection.count_documents({})
+    colLength = ListingCollection.count_documents({})
     if num > colLength:
         return {"Success": False,"count": colLength, "Error": "Error the number of requests is greater than the amount of products in the database"}
     else:
-        return {"Success": True, "data": list_results[:num]} # might be wrong just need products not full listing
+        return {"Success": True, "data": list_results[:num]}
 
 @app.route('/getOpenListing', methods=['GET'])
 def getListing():
@@ -66,7 +65,7 @@ def getListing():
         # conditional for 400 error
         if colLength == 0:
             return {"Success": False,
-                    "Error": "Found no open status listings."}
+                    "Error": "400"}
         return {"Success": True, "data": list_results}
 
 @app.route('/getListingbyID', methods=['GET'])
@@ -77,7 +76,7 @@ def getListingbyID():
         colLength = ListingCollection.count_documents({})
         if colLength == 0:
             return {"Success": False,
-                    "Error": "No ID found"} # error message
+                    "Error": "400"}
         else:
             return {"Success": True,
                     "data": list_results}
@@ -91,12 +90,12 @@ Listing2 = Listing("Bid", 15.00, "The Boss Hog - The Black Prince", "Idontknow",
 Listing3 = Listing("Bid", 18.00, "Paradis Imperial", "gressy", 25.00, "02/04/2023", "Open")
 Listing4 = Listing("Bid", 17.00, "Black Bowmore 1964", "jordan", 26.00, "04/05/2023", "Closed")
 
-#app.run()
+app.run()
 #db.ProductCollection.insert_one(product1)
 #db.ProductCollection.insert_one(product2)
 #db.ProductCollection.insert_one(product3)
 #db.ProductCollection.insert_one(product4)
-Listing1.insertMongodb()
-Listing2.insertMongodb()
-Listing3.insertMongodb()
-Listing4.insertMongodb()
+#Listing1.insertMongodb()
+#Listing2.insertMongodb()
+#Listing3.insertMongodb()
+#Listing4.insertMongodb()
