@@ -1,5 +1,4 @@
 import pymongo
-import request
 from pymongo import MongoClient
 import random
 class Listing:
