@@ -2,6 +2,9 @@ import pymongo
 import request
 from pymongo import MongoClient
 import random
+
+# listing class
+
 class Listing:
 
     def __init__(self, Type, TerminatingPrice, ProductName, SellerID, StartingPrice, Expiration, Status):
