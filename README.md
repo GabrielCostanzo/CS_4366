@@ -212,8 +212,8 @@ Returns the sum of two parameters
 
 * Manages user email notifications
 
-### Example Function Name 
-Returns the sum of two parameters
+### Outbid notification 
+Sends email to outbidded user
 
 #### Request
 | Parameters| URL |
