@@ -3,7 +3,8 @@ import request
 from pymongo import MongoClient
 import random
 
-# listing class
+# listing
+# class
 
 class Listing:
 

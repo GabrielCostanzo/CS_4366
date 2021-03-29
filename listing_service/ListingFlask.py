@@ -5,7 +5,7 @@ import request
 from flask import request
 from listing_service import Listing
 
-# change
+# Listing
 
 client = pymongo.MongoClient("mongodb+srv://nicolas:capstone1@cluster0.vfv8c.mongodb.net/capstone?retryWrites=true&w=majority")
 db = client["capstone"]
