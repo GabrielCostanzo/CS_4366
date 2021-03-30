@@ -2,16 +2,11 @@ from django.urls import path
 
 from . import views
 
+app_name = 'auction'
 urlpatterns = [
-    # ex: /polls/
-    path('', views.index, name='index'),
-
-    # ex: /polls/5/
-    #path('<int:question_id>/', views.detail, name='detail'),
-
-    # ex: /polls/5/results/
-    #path('<int:question_id>/results/', views.results, name='results'),
-    
-    # ex: /polls/5/vote/
-    #path('<int:question_id>/vote/', views.vote, name='vote'),
+    path('create_account', views.create_account, name='create_account'),
+    path('login', views.login, name='login_detail'),
+    path('login_submit', views.login_submit, name='login_submit'),
+    path('listings', views.listings, name='listings'),
+    path('listing_detail/<int:listing_id>', views.listing_detail, name='listing_detail'),
 ]

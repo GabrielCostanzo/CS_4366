@@ -1,17 +1,28 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
+from django.urls import reverse
 from django.shortcuts import render
 
-def index(request):
+def create_account(request):
     context = {}
-    return render(request, 'auction/index.html', context)
+    return render(request, 'auction/create_account.html', context)
 
-def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
+def login(request):
+    context = {}
+    return render(request, 'auction/login.html', context)
 
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+def login_submit(request):
+	username = request.POST['username']
+	password = request.POST['password']
 
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
+	return HttpResponseRedirect(reverse('auction:listings'))
+
+
+
+def listings(request):
+    context = {}
+    return render(request, 'auction/listings.html', context)
+
+def listing_detail(request, listing_id):
+    context = {"listing_id": listing_id}
+    return render(request, 'auction/listing_detail.html', context)

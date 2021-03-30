@@ -1,0 +1,32 @@
+<html>
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'auction/login_style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in</title>
+</head>
+
+<body>
+	<br>
+	<br>
+	<br>
+	<br>
+  <div class="main">
+    <p class="sign" align="center">Sign in</p>
+    <form class="form1" id="login_form" action="{%url 'auction:login_submit'%}" method="post">
+      {% csrf_token %}
+      <input class="un " type="text" align="center" placeholder="Username" name="username">
+      <input class="pass" type="password" align="center" placeholder="Password" name="password">
+      <input class="submit" align="center" type="submit">
+    </form>
+      <p class="forgot" align="center"><a href="#">Forgot Password?</p>
+      <p class="forgot" align="center"><a href="{%url 'auction:create_account'%}">Create Account</p>
+            
+                
+    </div>
+     
+</body>
+
+</html>
