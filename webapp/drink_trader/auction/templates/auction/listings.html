@@ -4,6 +4,10 @@
 	<title>Listings</title>
 </head>
 <body>
+	<div id="navigation_bar">
 	<h1>Listings home page</h1>
+	{% for listing in listings %}
+	<p>{{listing.product.drink_name}}</p>
+	{% endfor %}.
 </body>
 </html>

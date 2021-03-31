@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'auction/pending_verification.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pending Verification</title>
+</head>
+
+<body>
+	<br>
+	<br>
+	<br>
+	<br>
+  <div class="main">
+    <p class="sign" align="center">Congratulations! Your account has been created.</p>
+      <br>
+      <p class="information_text" align="center">Expect an email verifying your age within two business days. Once verified you may place bids on listings.</p>
+      <br>
+      <br>
+      <div class="link_container">
+        <a class="listing_link" align="center" href="{%url 'auction:listings'%}">View Listings</a>
+      </div>
+  </div>
+     
+</body>
+
+</html>
