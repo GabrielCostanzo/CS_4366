@@ -208,8 +208,8 @@ Returns the bids associated with a listing
 }      
 ```
 
-### bid 
-Returns the bids associated with a listing
+### placeBid
+Updates bid list of a listing if the new bid is higher than the previous, returns success message or error message
 
 #### Request
 | Parameters| URL |
