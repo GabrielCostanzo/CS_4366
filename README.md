@@ -186,13 +186,35 @@ Returns all open status listing
 
 * Manages bids on auction listings
 
-### Example Function Name 
-Returns the sum of two parameters
+### getBids 
+Returns a success message and a list of the bids associated with a listing, or an error message
 
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+| **int** lid | http://127.0.0.1:5000/bid_service/getBids?lid=123 |
+
+#### Response 
+
+```yaml
+{
+  "valid: True,
+  "data":       
+        {             
+         "testi": 1,  
+         "testj": 2,  
+         "sum": 3     
+        }            
+}      
+```
+
+### placeBid
+Updates bid list of a listing if the new bid is higher than the previous, returns success message or error message
+
+#### Request
+| Parameters| URL |
+|-----------|--------|
+| **String** uid, **int** lid, **float** bid_amt  | http://127.0.0.1:5000/bid_service/placeBid?uid=123&lid=123&bid_amt=20 |
 
 #### Response 
 
@@ -247,8 +269,9 @@ Creates a new user account
   ""Success": True, 
   "data":       
         {             
-         "accountId" : 123456, 
-         "first_name" : "randomUser"  
+         "accountId" : 123456,
+         "password" : "randomPwd",
+         "first_name" : "randomUser",  
          "verified": True     
         }            
 }      
@@ -269,8 +292,9 @@ Verifies user credentials and logs user in
   "Success": True,
   "data":       
         {             
-         "accountId" : 123456, 
-         "first_name" : "randomUser"  
+         "accountId" : 123456,
+         "password" : "randomPwd",
+         "first_name" : "randomUser",  
          "verified": True     
         }  
 }      
