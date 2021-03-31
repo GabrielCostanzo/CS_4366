@@ -186,8 +186,30 @@ Returns all open status listing
 
 * Manages bids on auction listings
 
-### Example Function Name 
-Returns the sum of two parameters
+### getBids 
+Returns the bids associated with a listing
+
+#### Request
+| Parameters| URL |
+|-----------|--------|
+| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+
+#### Response 
+
+```yaml
+{
+  "valid: True,
+  "data":       
+        {             
+         "testi": 1,  
+         "testj": 2,  
+         "sum": 3     
+        }            
+}      
+```
+
+### bid 
+Returns the bids associated with a listing
 
 #### Request
 | Parameters| URL |
