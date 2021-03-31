@@ -232,8 +232,8 @@ Sends email to outbidded user
 
 * Manages user accounts
 
-### Example Function Name 
-Returns the sum of two parameters
+### createAccount()
+Creates a new user account
 
 #### Request
 | Parameters| URL |
@@ -244,12 +244,38 @@ Returns the sum of two parameters
 
 ```yaml
 {
-  "valid: True,
+  ""Success": True, 
   "data":       
         {             
-         "testi": 1,  
-         "testj": 2,  
-         "sum": 3     
+         "accountId" : 123456, 
+         "first_name" : "randomUser"  
+         "verified": True     
         }            
 }      
 ```
+
+### login()
+Verifies user credentials and logs user in
+
+#### Request
+| Parameters| URL |
+|-----------|--------|
+| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+
+#### Response 
+
+```yaml
+{
+  "Success": True,
+  "data":       
+        {             
+         "accountId" : 123456, 
+         "first_name" : "randomUser"  
+         "verified": True     
+        }  
+}      
+```
+
+
+
+
