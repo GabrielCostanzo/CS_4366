@@ -192,7 +192,7 @@ Returns a success message and a list of the bids associated with a listing, or a
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **int** lid | http://127.0.0.1:5000/bid_service/getBids?lid=123 |
+| **int** lid | http://127.0.0.1:5000/bid_service/getBids?lid=357779 |
 
 #### Response 
 
@@ -214,7 +214,7 @@ Updates bid list of a listing if the new bid is higher than the previous, return
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **String** uid, **int** lid, **float** bid_amt  | http://127.0.0.1:5000/bid_service/placeBid?uid=123&lid=123&bid_amt=20 |
+| **String** uid, **int** lid, **float** bid_amt  | http://127.0.0.1:5000/bid_service/placeBid?uid=123&lid=357779&bid_amt=200 |
 
 #### Response 
 
