@@ -285,7 +285,7 @@ Creates a new user account
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+| **string** username, **stirng** email, **string** password, **string** first_name, **string** last_name | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
 
 #### Response 
 
@@ -308,7 +308,7 @@ Verifies user credentials and logs user in
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+| **string** username, **string** password | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
 
 #### Response 
 
