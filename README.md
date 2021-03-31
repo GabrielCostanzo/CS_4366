@@ -198,14 +198,45 @@ Returns a success message and a list of the bids associated with a listing, or a
 
 ```yaml
 {
-  "valid: True,
-  "data":       
-        {             
-         "testi": 1,  
-         "testj": 2,  
-         "sum": 3     
-        }            
-}      
+  "Success": true, 
+  "data": [
+    {
+      "Bid_Amount": 5.99, 
+      "Time": "Wed, 31 Mar 2021 13:33:55 GMT", 
+      "User": "testemail@gmail.com"
+    }, 
+    {
+      "Bid_Amount": 8.0, 
+      "Time": "Wed, 31 Mar 2021 13:34:16 GMT", 
+      "User": "testemail@gmail.com"
+    }, 
+    {
+      "Bid_Amount": 9.0, 
+      "Time": "Wed, 31 Mar 2021 13:34:25 GMT", 
+      "User": "testemail@gmail.com"
+    }, 
+    {
+      "Bid_Amount": 12.0, 
+      "Time": "Wed, 31 Mar 2021 15:10:20 GMT", 
+      "User": "testemail@gmail.com"
+    }, 
+    {
+      "Bid_Amount": 50.0, 
+      "Time": "Wed, 31 Mar 2021 17:45:16 GMT", 
+      "User": "testaccount@gmail.com"
+    }, 
+    {
+      "Bid_Amount": 100.0, 
+      "Time": "Wed, 31 Mar 2021 18:03:58 GMT", 
+      "User": "testaccount@gmail.com"
+    }, 
+    {
+      "Bid_Amount": 150.0, 
+      "Time": "Wed, 31 Mar 2021 18:13:49 GMT", 
+      "User": "testaccount@gmail.com"
+    }
+  ]
+}     
 ```
 
 ### placeBid
@@ -220,14 +251,8 @@ Updates bid list of a listing if the new bid is higher than the previous, return
 
 ```yaml
 {
-  "valid: True,
-  "data":       
-        {             
-         "testi": 1,  
-         "testj": 2,  
-         "sum": 3     
-        }            
-}      
+  "Success": true
+}    
 ```
 
 ## Notification Service API
