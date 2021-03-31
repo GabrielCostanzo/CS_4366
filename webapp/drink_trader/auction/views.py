@@ -29,7 +29,7 @@ class listing():
 		self.id = json_listing["_id"]
 
 def get_listings():
-	URL = "http://127.0.0.1:5000/getNumberOfListings?num=3"
+	URL = "http://127.0.0.1:5000/getNumberOfListings?num=12"
 	r = requests.get(url = URL)
 	json_response = r.json()
 

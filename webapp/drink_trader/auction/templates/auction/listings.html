@@ -1,13 +1,36 @@
-<!DOCTYPE html>
+
 <html>
 <head>
-	<title>Listings</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'auction/listings_style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Listings</title>
 </head>
 <body>
-	<div id="navigation_bar">
-	<h1>Listings home page</h1>
-	{% for listing in listings %}
-	<p>{{listing.product.drink_name}}</p>
-	{% endfor %}.
+	<div class="navigation_bar">
+		<a href="">User</a>
+		<a href="">About</a>
+		<a href="">Age Verification FAQ</a>
+	</div>
+	<div class="content_container">
+		{% for listing in listings %}
+		<div class="content_card">
+			<div class="image_container">
+				<a href="/auction/listing_detail/{{listing.id}}">
+			 		<img class="product_image" src="{% static 'auction/images/bottle_image.png' %}">
+			 	</a>
+			</div>
+			<div class="text_container">
+				<p class="product_name" align="center">{{listing.product.drink_name}}</p>
+				<p class="product_price" align="center">$2,000.00</p>
+			</div>
+		</div>
+
+		{% endfor %}.
+		<i aria-hidden="true"></i>
+		<i aria-hidden="true"></i>
+		<i aria-hidden="true"></i>
+	</div>
 </body>
 </html>
