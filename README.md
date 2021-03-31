@@ -269,8 +269,9 @@ Creates a new user account
   ""Success": True, 
   "data":       
         {             
-         "accountId" : 123456, 
-         "first_name" : "randomUser"  
+         "accountId" : 123456,
+         "password" : "randomPwd",
+         "first_name" : "randomUser",  
          "verified": True     
         }            
 }      
@@ -291,8 +292,9 @@ Verifies user credentials and logs user in
   "Success": True,
   "data":       
         {             
-         "accountId" : 123456, 
-         "first_name" : "randomUser"  
+         "accountId" : 123456,
+         "password" : "randomPwd",
+         "first_name" : "randomUser",  
          "verified": True     
         }  
 }      
