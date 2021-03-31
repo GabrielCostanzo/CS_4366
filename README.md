@@ -187,12 +187,12 @@ Returns all open status listing
 * Manages bids on auction listings
 
 ### getBids 
-Returns the bids associated with a listing
+Returns a success message and a list of the bids associated with a listing, or an error message
 
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+| **int** lid | http://127.0.0.1:5000/bid_service/getBids?lid=123 |
 
 #### Response 
 
@@ -214,7 +214,7 @@ Updates bid list of a listing if the new bid is higher than the previous, return
 #### Request
 | Parameters| URL |
 |-----------|--------|
-| **int** testi, **float** testj | http://127.0.0.1:5000/examplefunction?testi=1&testj=2 |
+| **String** uid, **int** lid, **float** bid_amt  | http://127.0.0.1:5000/bid_service/placeBid?uid=123&lid=123&bid_amt=20 |
 
 #### Response 
 
