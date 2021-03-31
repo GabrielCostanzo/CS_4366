@@ -1,9 +1,89 @@
-<!DOCTYPE html>
+
 <html>
 <head>
-	<title>Listing Detail</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'auction/listing_detail_style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Listing Detail</title>
 </head>
 <body>
-	<h1>Listing Detail Page</h1>
+	<div class="navigation_bar">
+		<div class="navigation_content">
+			<a href="">User</a>
+			<a href="">About</a>
+			<a href="">Age Verification FAQ</a>
+			<p class="logo" align="left">Drink Trader</p>
+		</div>
+	</div>
+	<div class="content_container">
+		<div class="product_container">
+			<div class="product_image_container">
+				<img class="product_image" src="{% static 'auction/images/'|add:listing.id|add:'.png' %}" >
+			</div>
+			<div class="product_info_container">
+				<div class="product_data_line_container">
+					<p class="field_label">Name:</p>
+					<p class="field_value">{{listing.product.drink_name}}</p>
+				</div>
+				<div class="product_data_line_container">
+					<p class="field_label">Brand:</p>
+					<p class="field_value">{{listing.product.drink_brand}}</p>
+				</div>
+				<div class="product_data_line_container">
+					<p class="field_label">Type:</p>
+					<p class="field_value">{{listing.product.alcohol_type}}</p>
+				</div>
+				<div class="product_data_line_container">
+					<p class="field_value" id="description">{{listing.product.description}}</p>
+				</div>
+				<br>
+				<div class="product_data_line_container">
+					<p class="sub_field_label">Volume:</p>
+					<p class="sub_field_value">{{listing.product.volume}} ML</p>
+				</div>
+				<div class="product_data_line_container">
+					<p class="sub_field_label">ABV:</p>
+					<p class="sub_field_value">{{listing.product.alcohol_percentage}}%</p>
+				</div>
+				<div class="product_data_line_container">
+					<p class="sub_field_label">Orgin:</p>
+					<p class="sub_field_value">{{listing.product.country_of_orgin}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="purchase_container">
+			<div class="price_container">
+				<p class="field_label" id="current_price_field">Current Price</p>
+				<p class="field_value" id="current_price_value">${{listing.current_price}}</p>
+			</div>
+			<br>
+			<div class="place_bid_container">
+				<p class="field_label" id="current_price_field" align="center"j>Place Bid</p>
+				<form class="form1" id="login_form" action="{%url 'auction:bid_submit'%}" method="post">
+					{% csrf_token %}
+					<input class="input_field" type="text" align="center" placeholder="Bid Amount" name="bid_amount">
+
+					<input type="hidden" name="username" value="testaccount@gmail.com" />
+					<input type="hidden" name="listing_id" value="{{listing.id}}" />
+
+					<input class="submit" align="center" type="submit">
+				</form>
+			</div>
+			<br>
+			<div class="bid_history">
+				<div class="product_data_line_container" id="recent_bids_container">
+					<p class="field_label" id="recent_bids">Recent Bids</p>
+				</div>
+				{% for bid in listing.bids.bid_list %}
+				<div class="product_data_line_container">
+					<p class="sub_field_label">{{bid.bid_amount}}</p>
+					<p class="sub_field_value">{{bid.time}}</p>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	</div>
 </body>
 </html>

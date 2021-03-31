@@ -5,6 +5,21 @@ from django.shortcuts import render
 import requests
 import pprint
 
+class bid():
+	def __init__(self, json_bid):
+		self.user = json_bid["User"]
+		self.bid_amount = json_bid["Bid_Amount"]
+		self.time = json_bid["Time"]
+
+class bids():
+	def __init__(self, json_bid_list):
+		self.bid_list = []
+		self.populate_bids(json_bid_list)
+
+	def populate_bids(self, json_bid_list):
+		for json_bid in json_bid_list:
+			self.bid_list.append(bid(json_bid))
+
 class product():
 	def __init__(self, json_product):
 		self.alcohol_percentage = json_product["AlcoholPercentage"]
@@ -24,9 +39,20 @@ class listing():
 		self.start_price = json_listing["StartPrice"]
 		self.status = json_listing["Status"]
 		self.terminating_price = json_listing["TerminatingPrice"]
-		#self.bids = json_listing[""] 
+		self.bids = bids(json_listing["Bids"]) 
 		self.type = json_listing["Type"]
 		self.id = str(json_listing["_id"])
+		self.current_price = self.get_current_price()
+
+	def get_current_price(self):
+		if len(self.bids.bid_list) == 0:
+			return self.start_price
+		else:
+			return self.bids.bid_list[-1].bid_amount 
+
+def place_bid(username, listing_id, bid_amount):
+	URL = "http://127.0.0.1:23450/bid_service/placeBid?lid="+str(listing_id)+"&uid="+str(username)+"&bid_amt="+str(bid_amount)
+	r = requests.get(url = URL)
 
 def get_listings():
 	URL = "http://127.0.0.1:5000/getNumberOfListings?num=12"
@@ -40,6 +66,16 @@ def get_listings():
 
 	return listing_objects
 
+def get_listing_by_id(listing_id):
+	URL = "http://127.0.0.1:5000/getListingbyID?reqId=" + str(listing_id)
+	r = requests.get(url = URL)
+	json_response = r.json()
+
+	print(json_response)
+
+	listing_obj = listing(json_response['data'][0])
+
+	return listing_obj
 
 def create_account(request):
     context = {}
@@ -80,5 +116,21 @@ def listings(request):
 	return render(request, 'auction/listings.html', context)
 
 def listing_detail(request, listing_id):
-	context = {"listing_id": listing_id}
+	listing = get_listing_by_id(listing_id)
+	listing.bids.bid_list = listing.bids.bid_list[::-1]
+	context = {"listing": listing}
 	return render(request, 'auction/listing_detail.html', context)
+
+def bid_submit(request):
+	username = request.POST['username']
+	listing_id = request.POST['listing_id']
+	bid_amount = request.POST['bid_amount']
+
+	place_bid(username, listing_id, bid_amount)
+
+	return HttpResponseRedirect(reverse('auction:bid_confirmed'))
+
+
+def bid_confirmed(request):
+    context = {}
+    return render(request, 'auction/bid_confirmed.html', context)

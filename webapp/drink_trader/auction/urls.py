@@ -11,4 +11,6 @@ urlpatterns = [
     path('login_submit', views.login_submit, name='login_submit'),
     path('listings', views.listings, name='listings'),
     path('listing_detail/<int:listing_id>', views.listing_detail, name='listing_detail'),
+    path('bid_submit', views.bid_submit, name='bid_submit'),
+    path('bid_confirmed', views.bid_confirmed, name='bid_confirmed'),
 ]
