@@ -5,12 +5,20 @@ body {
 
 .navigation_bar
 {
+	display: flex;
+	justify-content: center;
 	overflow: hidden;
 	background-color: white;
-	width: 48.5%;
+	width: 100%;
 	height: 70px;
-	margin: 0 auto; 
-	box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+	margin-top: -8px;
+	box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.2);
+}
+
+.navigation_content
+{
+	width: 46.5%;
+
 }
 
 .navigation_bar a {
@@ -28,38 +36,55 @@ body {
   color: black;
 }
 
+.logo {
+    color: #3d649eff;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+}
+
 .content_container
 {
 	display: flex;
 	flex-wrap: wrap; 
-	justify-content: space-between;
+	justify-content: center;
 	width: 50%;
 	height: 90%;
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 10px;
 }
 
 .content_container::after {
   content: "";
   flex: auto;
 }
+
 .content_card
 {
 	display: flex;
 	flex-direction: column;
-	width: 275px;
-	height: 350px;
-	margin: 20px;
+	width: 280px;
+	height: 375px;
+	margin: 10px;
 	background-color: white;
-	box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+	box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.2);
+}
 
+.tag_container
+{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	overflow: hidden;
+	justify-content: space-around;
 }
 
 .image_container
 {
 	margin: auto;
 	display: flex;
-	height: 300px;
+	flex:6;
 }
 
 .product_image
@@ -71,13 +96,13 @@ body {
 
 .text_container
 {
-	height: 100px;
-	background-color: white;
+	flex:2;
+	background-color: #f7f9fbff;
 }
 
 
 .product_name {
-    color: black;
+    color: #3b3b3be9;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     font-size: 20px;
@@ -85,9 +110,18 @@ body {
 
 .product_price
 {
-	color: black;
+	color: #2a4055d9;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 17px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.alcohol_type
+{
+	color: #7498bbd9;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    margin-left: 10px;
 }
 
 i {
@@ -96,7 +130,7 @@ i {
 	margin: 20px;
 }
 
-a{
+a {
 	margin: auto; 
 	max-width: 100%;
 	max-height: 100%;

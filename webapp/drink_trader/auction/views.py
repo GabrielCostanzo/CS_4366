@@ -26,7 +26,7 @@ class listing():
 		self.terminating_price = json_listing["TerminatingPrice"]
 		#self.bids = json_listing[""] 
 		self.type = json_listing["Type"]
-		self.id = json_listing["_id"]
+		self.id = str(json_listing["_id"])
 
 def get_listings():
 	URL = "http://127.0.0.1:5000/getNumberOfListings?num=12"

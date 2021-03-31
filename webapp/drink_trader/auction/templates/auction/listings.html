@@ -9,21 +9,27 @@
 </head>
 <body>
 	<div class="navigation_bar">
-		<a href="">User</a>
-		<a href="">About</a>
-		<a href="">Age Verification FAQ</a>
+		<div class="navigation_content">
+			<a href="">User</a>
+			<a href="">About</a>
+			<a href="">Age Verification FAQ</a>
+			<p class="logo" align="left">Drink Trader</p>
+		</div>
 	</div>
 	<div class="content_container">
 		{% for listing in listings %}
 		<div class="content_card">
+			<div class="tag_container">
+				<p class="product_name" align="center">{{listing.product.drink_name}}</p>
+			</div>
 			<div class="image_container">
 				<a href="/auction/listing_detail/{{listing.id}}">
-			 		<img class="product_image" src="{% static 'auction/images/bottle_image.png' %}">
+			 		<img class="product_image" src="{% static 'auction/images/'|add:listing.id|add:'.png' %}" >
 			 	</a>
 			</div>
 			<div class="text_container">
-				<p class="product_name" align="center">{{listing.product.drink_name}}</p>
-				<p class="product_price" align="center">$2,000.00</p>
+				<p class="product_price" align="left">$2,000.00</p>
+				<p class="alcohol_type" align="left">{{listing.product.alcohol_type}}</p>
 			</div>
 		</div>
 
