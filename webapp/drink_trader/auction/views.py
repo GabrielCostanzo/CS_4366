@@ -134,3 +134,17 @@ def bid_submit(request):
 def bid_confirmed(request):
     context = {}
     return render(request, 'auction/bid_confirmed.html', context)
+
+def user_account(request):
+    context = {}
+    return render(request, 'auction/user_account.html', context)
+
+def user_account_submit(request):
+
+	first_name = request.POST['first_name']
+	username = request.POST['username']
+	password = hash(request.POST['password'])
+
+	#TODO: call account service's create account function
+
+	return HttpResponseRedirect(reverse('auction:pending_verification'))
