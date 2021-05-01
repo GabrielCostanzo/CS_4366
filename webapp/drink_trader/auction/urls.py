@@ -14,4 +14,5 @@ urlpatterns = [
     path('bid_submit', views.bid_submit, name='bid_submit'),
     path('bid_confirmed', views.bid_confirmed, name='bid_confirmed'),
     path('user_account', views.user_account, name='user_account'),
+    path('user_account_submit', views.user_account_submit, name='user_account_submit'),
 ]
