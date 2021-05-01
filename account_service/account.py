@@ -26,9 +26,15 @@ class Account():
         client = pymongo.MongoClient("mongodb+srv://atharva:atharva@cluster0.jnzyx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         db = client["user_service"]
         collection = db["account"]
-        data = {"_id": uuid.uuid4(), "username" : self.username, "password" : self.password,
-                "email" : self.email, "first_name" : self.first_name, "verified" : verified}
-        db.collection.insert_one(data)
+        user = collection.find_one({"email" : self.email})
+        if user:
+            return False
+        else:
+            data = {"_id": uuid.uuid4(), "username" : self.username, "password" : self.password,
+                    "email" : self.email, "first_name" : self.first_name, "verified" : verified}
+
+            db.collection.insert_one(data)
+            return True
 
 
 

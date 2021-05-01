@@ -23,7 +23,24 @@ def signup():
     first_name = "atharva"
     verified = True
     new_user = Account(username, password, email, first_name, verified)
-    Account.createAccount(new_user);
+    if Account.createAccount(new_user):
+        return {
+                "Success": True,
+                "data":       
+                        {             
+                        "accountId" : new_user["_id"],
+                        "password" : new_user["password"],
+                        "first_name" : new_user["first_name"],  
+                        "verified": new_user["verified"]    
+                        }
+                }
+    else:
+        return {
+                "Success": True,
+                "data" : "Create account failed/user already exists"
+                }
+
+
 
 
 @app.route('/login', methods=['GET'])
