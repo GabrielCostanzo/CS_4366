@@ -15,17 +15,12 @@
 	<br>
   <div class="main">
     <p class="sign" align="center">My Account</p>
-    <form class="form1" id="login_form" action="{%url 'auction:user_account_submit'%}" method="post">
-      {% csrf_token %}
-      <input class="input_field" type="text" align="center" placeholder="First Name" name="first_name">
-      <input class="input_field" type="text" align="center" placeholder="Username" name="username">
-      <input class="input_field" type="password" align="center" placeholder="Password" name="password">
-      <input class="submit" align="center" type="submit">
-    </form>
-   	<br>
 
+   	<p class="sign" align="left">My Listings</p>
 
-    </div>
+    <p class="sign" align="left">My Bids</p>
+
+  </div>
 
 </body>
 

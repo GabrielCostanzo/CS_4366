@@ -136,8 +136,9 @@ def bid_confirmed(request):
     return render(request, 'auction/bid_confirmed.html', context)
 
 def user_account(request):
-    context = {}
-    return render(request, 'auction/user_account.html', context)
+	# listings = get_listings()
+	context = {} # {"listings": listings}
+	return render(request, 'auction/user_account.html', context)
 
 def user_account_submit(request):
 
