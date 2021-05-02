@@ -137,7 +137,21 @@ def bid_confirmed(request):
 
 def user_account(request):
 	listings = get_listings()
-	context = {"listings": listings}
+
+	# filter for user's bids
+	my_bid_listings = []
+	for listing in listings:
+		if len(listing.bids.bid_list) != 0:
+			if "123" == listing.bids.bid_list[-1].user:
+				my_bid_listings.append(listing)
+
+	# filter for user's listings
+	my_listings = []
+	for listing in listings:
+		if "gressy" == listing.seller:
+			my_listings.append(listing)
+
+	context = {"my_listings" : my_listings, "my_bid_listings" : my_bid_listings}
 	return render(request, 'auction/user_account.html', context)
 
 def user_account_submit(request):

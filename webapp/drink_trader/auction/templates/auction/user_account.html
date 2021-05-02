@@ -18,11 +18,32 @@
 
    	<p class="sign" align="left">My Listings</p>
 
+      <div class="content_container">
+		{% for listing in my_listings %}
+		<div class="content_card">
+			<div class="tag_container">
+				<p class="product_name" align="center">{{listing.product.drink_name}}</p>
+			</div>
+			<div class="image_container">
+				<a href="/auction/listing_detail/{{listing.id}}">
+			 		<img class="product_image" src="{% static 'auction/images/'|add:listing.id|add:'.png' %}" >
+			 	</a>
+			</div>
+			<div class="text_container">
+				<p class="product_price" align="left">${{listing.current_price}}</p>
+				<p class="alcohol_type" align="left">{{listing.product.alcohol_type}}</p>
+			</div>
+		</div>
+
+		{% endfor %}
+		<i aria-hidden="true"></i>
+		<i aria-hidden="true"></i>
+		<i aria-hidden="true"></i>
+      </div>
+
     <p class="sign" align="left">My Bids</p>
     <div class="content_container">
-		{% for listing in listings %}
-
-        {% if listing.bids[-1].user == "123" %}
+		{% for listing in my_bid_listings %}
 
             <div class="content_card">
                 <div class="tag_container">
@@ -34,12 +55,10 @@
                     </a>
                 </div>
                 <div class="text_container">
-                    <p class="product_price" align="left">${{listing.current_price}}</p>
+                    <p class="highest_bid" align="left">${{listing.current_price}}</p>
                     <p class="alcohol_type" align="left">{{listing.product.alcohol_type}}</p>
                 </div>
 		    </div>
-
-        {% endif %}
 
         {% endfor %}
 		<i aria-hidden="true"></i>
