@@ -1,6 +1,7 @@
 import pymongo
 from pymongo import MongoClient
 import random
+
 class Listing:
 
     def __init__(self, Type, TerminatingPrice, ProductName, SellerID, StartingPrice, Expiration, Status):
@@ -30,4 +31,5 @@ class Listing:
         collection = db["collection"]
         document = {"_id": random.randint(1,10000000), "Type": self.Type, "TerminatingPrice": self.TerminatingPrice, "Bids": self.Bids,
                     "Product": self.Product, "Seller": self.SellerID, "StartPrice": self.StartingPrice, "Expiration": self.Expiration, "Status": self.Status}
+        print(self.Product)
         db.collection.insert_one(document)
