@@ -189,7 +189,7 @@ def user_account(request):
     my_bid_listings = []
     for listing in listings:
         if len(listing.bids.bid_list) != 0:
-            if "123" == listing.bids.bid_list[-1].user:
+            if "testaccount@gmail.com" == listing.bids.bid_list[-1].user:
                 my_bid_listings.append(listing)
 
     # filter for user's listings
