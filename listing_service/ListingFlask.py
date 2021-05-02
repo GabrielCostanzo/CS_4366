@@ -1,5 +1,6 @@
 import pymongo
 from pymongo import MongoClient
+import flask
 from flask import request
 from Listing import Listing
 
@@ -84,9 +85,25 @@ def page_not_found(e):
     <p>The resource could not be found</p>''', 400
 
 Listing1 = Listing("Bid", 12.00, "XO", "Redbear", 25.00, "12/12/2022", "Open")
-Listing2 = Listing("Bid", 15.00, "The Boss Hog - The Black Prince", "Idontknow", 30.00, "05/04/2022", "Open")
-Listing3 = Listing("Bid", 18.00, "Paradis Imperial", "gressy", 25.00, "02/04/2023", "Open")
-Listing4 = Listing("Bid", 17.00, "Black Bowmore 1964", "jordan", 26.00, "04/05/2023", "Closed")
+Listing2 = Listing("Bid", 18.00, "Paradis Imperial", "gressy", 25.00, "02/04/2023", "Open")
+Listing3 = Listing("Bid", 17.00, "Black Bowmore 1964", "jordan", 26.00, "04/05/2023", "Closed")
+Listing4 = Listing("Bid", 12.00, "XO", "Redbear", 25.00, "12/12/2022", "Open")
+Listing5 = Listing("Bid", 18.00, "Paradis Imperial", "gressy", 25.00, "02/04/2023", "Open")
+Listing6 = Listing("Bid", 17.00, "Black Bowmore 1964", "jordan", 26.00, "04/05/2023", "Closed")
+Listing7 = Listing("Bid", 12.00, "XO", "Redbear", 25.00, "12/12/2022", "Open")
+Listing8 = Listing("Bid", 18.00, "Paradis Imperial", "gressy", 25.00, "02/04/2023", "Open")
+Listing9 = Listing("Bid", 17.00, "Black Bowmore 1964", "jordan", 26.00, "04/05/2023", "Closed")
+
+#Listing1.insertMongodb()
+#Listing2.insertMongodb()
+#Listing3.insertMongodb()
+#Listing4.insertMongodb()
+#Listing5.insertMongodb()
+#Listing6.insertMongodb()
+#Listing7.insertMongodb()
+#Listing8.insertMongodb()
+#Listing9.insertMongodb()
+
 
 app.run()
 #db.ProductCollection.insert_one(product1)
@@ -96,4 +113,3 @@ app.run()
 #Listing1.insertMongodb()
 #Listing2.insertMongodb()
 #Listing3.insertMongodb()
-#Listing4.insertMongodb()

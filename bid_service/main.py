@@ -36,6 +36,22 @@ def getBids():
     bid_list = listing["Bids"]
     return {"Success": True, "data": bid_list}
 
+# returns all closing prices for a product
+@app.route('/bid_service/getHistoricalPrices', methods=['GET'])
+def getHistoricalPrices():
+    if 'pid' in request.args:
+        pid = request.args.getlist('pid')[0]
+        print(pid)
+    else:
+        return {"Success": False, "Error Message": "Invalid PID"}
+
+    # returns list of bids for lid
+    listings = collection.find({"Product.DrinkName": pid, "Status": "Closed"})
+    bid_list = []
+    for listing in listings:
+        bid_list.append(listing["Bids"][-1])
+    return {"Success": True, "data": bid_list}
+
 # updates bid list of a listing if the new bid is higher than the previous
 @app.route('/bid_service/placeBid', methods=['GET'])
 def placeBid():
@@ -89,4 +105,4 @@ def placeBid():
     else:
         return {"Success": False, "Error Message": "Invalid Bid"}
 
-app.run()
+app.run(host='0.0.0.0', port=23450)

@@ -46,23 +46,31 @@ body {
 .content_container
 {
 	display: flex;
-	flex-wrap: wrap; 
 	justify-content: center;
 	width: 50%;
-	height: 90%;
+	height: 55%;
 	margin: 0 auto;
 	margin-top: 10px;
+	margin-bottom: 0px;
 }
+
+.graph_container
+{
+	width: 30%;
+	height: 200px;
+	margin-left: 31%;
+}
+
 
 .content_container::after {
   content: "";
   flex: auto;
 }
 
-
 .product_container
 {
 	margin: 10px;
+	margin-left: 150px;
 	display: flex;
 	flex-direction: column;
 	flex: 1;

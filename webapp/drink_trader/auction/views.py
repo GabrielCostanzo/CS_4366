@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.shortcuts import render
 import requests
 import pprint
+from datetime import datetime
 
 class bid():
 	def __init__(self, json_bid):
@@ -77,6 +78,17 @@ def get_listing_by_id(listing_id):
 
 	return listing_obj
 
+def get_historical_prices(product_id):
+	URL = "http://127.0.0.1:23450/bid_service/getHistoricalPrices?pid=" + str(product_id)
+	r = requests.get(url = URL)
+	json_response = r.json()
+
+	print(json_response)
+
+	bids = json_response['data']
+
+	return bids
+
 def create_account(request):
     context = {}
     return render(request, 'auction/create_account.html', context)
@@ -115,10 +127,39 @@ def listings(request):
 	context = {"listings": listings}
 	return render(request, 'auction/listings.html', context)
 
+class datapoint():
+	def __init__(self, x , y):
+		self.x = x
+		self.y = y
+
 def listing_detail(request, listing_id):
 	listing = get_listing_by_id(listing_id)
-	listing.bids.bid_list = listing.bids.bid_list[::-1]
-	context = {"listing": listing}
+	historical_data = get_historical_prices(listing.product.drink_name)
+
+	current_listing_x_values = []
+	current_listing_y_values = []
+	product_y_values = []
+	graph_data = []
+	listing_graph_data = []
+	product_graph_data = []
+
+	for bid in historical_data:
+		print(bid)
+		product_graph_data.append(datapoint(bid["Time"], bid["Bid_Amount"]))
+		product_y_values.append(bid["Bid_Amount"])
+		current_listing_x_values.append(bid["Time"])
+
+	import random
+	for bid in listing.bids.bid_list:
+		listing_graph_data.append(datapoint(bid.time, bid.bid_amount))
+		current_listing_x_values.append(bid.time);
+		current_listing_y_values.append(bid.bid_amount)
+
+	print("TEST:", current_listing_x_values)
+
+	listing.bids.bid_list = listing.bids.bid_list[::-1][:6]
+	context = {"listing": listing, "current_listing_y_values": current_listing_y_values, "product_y_values": product_y_values,
+	"x_values": current_listing_x_values, "listing_graph_data": listing_graph_data, "product_graph_data": product_graph_data}
 	return render(request, 'auction/listing_detail.html', context)
 
 def bid_submit(request):
