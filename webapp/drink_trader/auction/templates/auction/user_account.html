@@ -1,0 +1,71 @@
+<html>
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'auction/create_account_style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Account</title>
+</head>
+
+<body>
+	<br>
+	<br>
+	<br>
+	<br>
+  <div class="main">
+    <p class="sign" align="center">My Account</p>
+      <p class="sign" align="center">My Listings</p>
+	  <div class="content_container">
+		{% for listing in my_listings %}
+
+		<div class="content_card">
+			<div class="tag_container">
+				<p class="product_name" align="center">{{listing.product.drink_name}}</p>
+			</div>
+			<div class="image_container">
+				<a href="/auction/listing_detail/{{listing.id}}">
+			 		<img class="product_image" src="{% static 'auction/images/'|add:listing.id|add:'.png' %}" >
+			 	</a>
+			</div>
+			<div class="text_container">
+				<p class="product_price" align="left">${{listing.current_price}}</p>
+				<p class="alcohol_type" align="left">{{listing.product.alcohol_type}}</p>
+                <p class="alcohol_type" align="left">{{listing.expiration}}</p>
+			</div>
+		</div>
+		{% endfor %}
+		<i aria-hidden="true"></i>
+		<i aria-hidden="true"></i>
+		<i aria-hidden="true"></i>
+	</div>
+   	<br>
+	  <p class="sign" align="center">My Bids</p>
+      <div class="content_container">
+		{% for listing in my_bid_listings %}
+
+		<div class="content_card">
+			<div class="tag_container">
+				<p class="product_name" align="center">{{listing.product.drink_name}}</p>
+			</div>
+			<div class="image_container">
+				<a href="/auction/listing_detail/{{listing.id}}">
+			 		<img class="product_image" src="{% static 'auction/images/'|add:listing.id|add:'.png' %}" >
+			 	</a>
+			</div>
+			<div class="text_container">
+				<p class="product_price" align="left">${{listing.current_price}}</p>
+				<p class="alcohol_type" align="left">{{listing.product.alcohol_type}}</p>
+                <p class="alcohol_type" align="left">{{listing.expiration}}</p>
+			</div>
+		</div>
+		{% endfor %}
+		<i aria-hidden="true"></i>
+		<i aria-hidden="true"></i>
+		<i aria-hidden="true"></i>
+	</div>
+    </div>
+
+</body>
+
+</html>

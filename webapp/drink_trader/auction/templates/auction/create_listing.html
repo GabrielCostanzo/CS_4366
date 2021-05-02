@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'auction/create_account_style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Listing</title>
+</head>
+
+<body>
+	<br>
+	<br>
+	<br>
+	<br>
+  <div class="main">
+    <p class="sign" align="center">Create New Listing</p>
+    <form class="form1" id="login_form" action="{%url 'auction:listing_submit'%}" method="post">
+      {% csrf_token %}
+      <input class="input_field" type="text" align="center" placeholder="Type" name="type">
+
+      <input class="input_field" type="text" align="center" placeholder="Terminating Price" name="terminating price">
+
+      <input class="input_field" type="text" align="center" placeholder="Status" name="status">
+
+      <input class="input_field" type="text" align="center" placeholder="Starting Price" name="startingprice">
+
+      <input class="input_field" type="text" align="center" placeholder="Seller" name="Seller">
+
+        <input class="input_field" type="text" align="center" placeholder="Product ID" name="productid">
+
+        <input class="input_field" type="text" align="center" placeholder="Drink Brand" name="drinkbrand">
+
+      <input class="input_field" type="text" align="center" placeholder="DrinkName" name="drinkname">
+
+      <input class="input_field" type="text" align="center" placeholder="Volume" name="volume">
+
+      <input class="input_field" type="text" align="center" placeholder="Alcohol Type" name="alcoholtype">
+
+      <input class="input_field" type="text" align="center" placeholder="Alcohol Percentage" name="alcoholpercentage">
+
+      <input class="input_field" type="text" align="center" placeholder="Country of Origin" name="countryoforigin">
+
+      <input class="input_field" type="text" size="100"  align="center" placeholder="Description" name="test">
+
+      <p align="left">Upload Image</p>
+
+      <input class="input_field" type="file" id="image" name="image">
+
+      <p align="left">Expiration Date for Bidding:</p>
+
+      <input class="input_field" type="date" align="center" placeholder="Expiration Date" name="expirationdate">
+      <br>
+      <br>
+        <br>
+      <input class="submit" align="center" type="submit">
+
+
+    </form>
+   	<br>
+
+    </div>
+
+</body>
+
+</html>
