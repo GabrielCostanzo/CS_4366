@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 import flask
-#from passlib.hash import pbkdf2_sha256 
 import pymongo
 from pymongo import MongoClient
 import uuid
@@ -9,7 +8,7 @@ from account_service.account import Account, Login
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-app.run()
+
 
 client = pymongo.MongoClient("mongodb+srv://atharva:atharva@cluster0.jnzyx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client["user_service"]
@@ -17,39 +16,75 @@ collection = db["account"]
 
 @app.route('/createUser', methods=['GET'])
 def signup():
-    username = "atharva1234"
-    password = "atharva1"
-    email = "atharvaraibagi@gmail.com"
-    first_name = "atharva"
+
+    if 'email' in request.args:
+        email = request.args.getlist('email')[0]
+    else:
+        return {"Success": False, "Error Message": "Invalid email"}
+
+    if 'username' in request.args:
+        username = request.args.getlist('username')[0]
+    else:
+        return {"Success": False, "Error Message": "Invalid username"}
+
+    if 'password' in request.args:
+        password = request.args.getlist('password')[0]
+    else:
+        return {"Success": False, "Error Message": "Invalid password"}
+
+    if 'first_name' in request.args:
+        first_name = request.args.getlist('first_name')[0]
+    else:
+        return {"Success": False, "Error Message": "Invalid first_name"}
+
     verified = True
-    new_user = Account(username, password, email, first_name, verified)
-    if Account.createAccount(new_user):
+    id = uuid.uuid4().hex
+
+
+    if not (db.collection.find_one({"email" : email})):
+    #new_user = Account(username, password, email, first_name, verified)
+        data = {"_id": id, "username" : username, "password" : password,
+                        "email" : email, "first_name" : first_name, "verified" : True}
+
+        db.collection.insert_one(data)
+
         return {
                 "Success": True,
                 "data":       
-                        {             
-                        "accountId" : new_user["_id"],
-                        "password" : new_user["password"],
-                        "first_name" : new_user["first_name"],  
-                        "verified": new_user["verified"]    
-                        }
-                }
+                    {             
+                        "accountId" : id,
+                        "password" : password,
+                        "first_name" : first_name,  
+                        "verified": verified    
+                    }
+            }
     else:
         return {
-                "Success": True,
+                "Success": False,
                 "data" : "Create account failed/user already exists"
-                }
-
+                } 
 
 
 
 @app.route('/login', methods=['GET'])
 def login():
-    username = "atharva1234"
-    password = "atharva1"
-    user = Login(username, password)
+    
+    if 'username' in request.args:
+        username = request.args.getlist('username')[0]
+    else:
+        return {"Success": False, "Error Message": "Invalid username"}
 
-    if user.login():
+    if 'password' in request.args:
+        password = request.args.getlist('password')[0]
+    else:
+        return {"Success": False, "Error Message": "Invalid password"}
+
+    user = db.collection.find_one({"username" : username})
+    success = False
+    if user and user["password"] == password:
+        success = True
+
+    if success:
 
         return {
                 "Success": True,
@@ -63,7 +98,7 @@ def login():
                 }
     else:
         return {
-                "Success": True,
+                "Success": False,
                 "data" : "Login attempt failed"
                 }
 
@@ -71,17 +106,28 @@ def login():
 
 @app.route('/getUser', methods=['GET'])
 def getUserDetails():
-    userId = int(request.args['userId'])
-    user = collection.find_one({"_id" : userId})
+
+    if 'uid' in request.args:
+        uid = request.args.getlist('uid')[0]
+    else:
+        return {"Success": False, "Error Message": "Invalid uid"}
+
+    user = collection.find_one({"_id" : uid})
+
     if not user:
         return {"Success": False,
-                "Error": "400"}
+                "Error": "User not found"}
     else:
-        return { "Email": user['email'],
-                 "Name" : user['name']}
+        return { "Email": user["email"],
+                "Name" : user["name"]}
 
+    
 
 @app.errorhandler(400)
 def page_not_found(e):
     return '''<h1>400</h1>
     <p>The resource could not be found</p>''', 400
+
+
+
+app.run()
