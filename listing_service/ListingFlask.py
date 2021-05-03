@@ -100,7 +100,6 @@ def MakeListing():
     alcoholtype = str(request.args['alcoholtype'])
     alcoholpercentage = str(request.args['alcoholpercentage'])
     countryoforigin = str(request.args['countryoforigin'])
-    image = request.files['image']
     description = str(request.args['description'])
 
 
@@ -115,8 +114,7 @@ def MakeListing():
         "CountryOfOrigin": countryoforigin,
         "Description": description
     }
-    #checkifexist = db.ProductCollection.find()
-    #if drinkname != checkifexist:
+
     db.ProductCollection.insert_one(product)
     listing = Listing(type, terminatingprice, drinkname, seller, startingprice, expirationdate, status)
     listing.insertMongodb()
@@ -127,6 +125,8 @@ def page_not_found(e):
     return '''<h1>400</h1>
     <p>The resource could not be found</p>''', 400
 
+app.run()
+'''
 Listing1 = Listing("Bid", 12.00, "XO", "Redbear", 25.00, "12/12/2022", "Open")
 Listing2 = Listing("Bid", 18.00, "Paradis Imperial", "gressy", 25.00, "02/04/2023", "Open")
 Listing3 = Listing("Bid", 17.00, "Black Bowmore 1964", "jordan", 26.00, "04/05/2023", "Closed")
@@ -146,9 +146,9 @@ Listing9 = Listing("Bid", 17.00, "Black Bowmore 1964", "jordan", 26.00, "04/05/2
 #Listing7.insertMongodb()
 #Listing8.insertMongodb()
 #Listing9.insertMongodb()
+'''
 
 
-app.run()
 #db.ProductCollection.insert_one(product1)
 #db.ProductCollection.insert_one(product2)
 #db.ProductCollection.insert_one(product3)

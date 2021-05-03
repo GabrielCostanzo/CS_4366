@@ -167,9 +167,7 @@ def create_listing_submit(request):
     alcoholpercentage = request.POST['alcoholpercentage']
     countryoforigin = request.POST['countryoforigin']
     description = request.POST['test']
-    #image = request.POST['image']
     expirationdate = request.POST['expirationdate']
-    #print(image)
     create_listingAPI(type, termatingprice, status, startprice, seller, id, drinkname, drinkbrand, volume, alcoholtype,
                    alcoholpercentage, countryoforigin, description, expirationdate)
 
