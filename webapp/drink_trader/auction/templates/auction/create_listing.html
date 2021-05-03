@@ -2,17 +2,22 @@
 
 <head>
   {% load static %}
-  <link rel="stylesheet" href="{% static 'auction/create_account_style.css' %}">
+  <link rel="stylesheet" href="{% static 'auction/create_listing.css' %}">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Create Listing</title>
 </head>
 
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
+    <div class="navigation_bar">
+    <div class="navigation_content">
+      <a href="/auction/user_account/{{username}}">{{username}}</a>
+      <a href="/auction/listings/{{username}}">Listings</a>
+      <a href="/auction/create_listing/{{username}}">Create Listing</a>
+      <p class="logo" align="left">Drink Trader</p>
+    </div>
+  </div>
+
   <div class="main">
     <p class="sign" align="center">Create New Listing</p>
     <form class="form1" id="login_form" action="{%url 'auction:listing_submit'%}" method="post">
@@ -21,11 +26,9 @@
 
       <input class="input_field" type="text" align="center" placeholder="Terminating Price" name="terminating price">
 
-      <input class="input_field" type="text" align="center" placeholder="Status" name="status">
-
       <input class="input_field" type="text" align="center" placeholder="Starting Price" name="startingprice">
 
-      <input class="input_field" type="text" align="center" placeholder="Seller" name="Seller">
+      <input type="hidden" name="Seller" value="{{username}}" />
 
         <input class="input_field" type="text" align="center" placeholder="Product ID" name="productid">
 

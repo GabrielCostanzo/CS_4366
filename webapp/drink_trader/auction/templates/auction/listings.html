@@ -10,9 +10,9 @@
 <body>
 	<div class="navigation_bar">
 		<div class="navigation_content">
-			<a href="">User</a>
-			<a href="">About</a>
-			<a href="">Age Verification FAQ</a>
+			<a href="/auction/user_account/{{username}}">{{username}}</a>
+			<a href="/auction/listings/{{username}}">Listings</a>
+			<a href="/auction/create_listing/{{username}}">Create Listing</a>
 			<p class="logo" align="left">Drink Trader</p>
 		</div>
 	</div>
@@ -23,7 +23,7 @@
 				<p class="product_name" align="center">{{listing.product.drink_name}}</p>
 			</div>
 			<div class="image_container">
-				<a href="/auction/listing_detail/{{listing.id}}">
+				<a href="/auction/listing_detail/{{listing.id}}/{{username}}">
 			 		<img class="product_image" src="{% static 'auction/images/'|add:listing.id|add:'.png' %}" >
 			 	</a>
 			</div>

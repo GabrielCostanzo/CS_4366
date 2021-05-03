@@ -10,9 +10,9 @@
 <body>
 	<div class="navigation_bar">
 		<div class="navigation_content">
-			<a href="">User</a>
-			<a href="">About</a>
-			<a href="">Age Verification FAQ</a>
+			<a href="/auction/user_account/{{username}}">{{username}}</a>
+			<a href="/auction/listings/{{username}}">Listings</a>
+			<a href="/auction/create_listing/{{username}}">Create Listing</a>
 			<p class="logo" align="left">Drink Trader</p>
 		</div>
 	</div>
@@ -57,6 +57,10 @@
 				<p class="field_label" id="current_price_field">Current Price</p>
 				<p class="field_value" id="current_price_value">${{listing.current_price}}</p>
 			</div>
+			<div class="price_container">
+				<p class="field_label" id="current_price_field">Ends: </p>
+				<p class="field_value" id="current_price_value">{{listing.expiration}}</p>
+			</div>
 			<br>
 			<div class="place_bid_container">
 				<p class="field_label" id="current_price_field" align="center"j>Place Bid</p>
@@ -64,7 +68,7 @@
 					{% csrf_token %}
 					<input class="input_field" type="text" align="center" placeholder="Bid Amount" name="bid_amount">
 
-					<input type="hidden" name="username" value="testaccount@gmail.com" />
+					<input type="hidden" name="username" value="{{username}}" />
 					<input type="hidden" name="listing_id" value="{{listing.id}}" />
 
 					<input class="submit" align="center" type="submit">
